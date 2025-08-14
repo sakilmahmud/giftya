@@ -1,0 +1,272 @@
+.icon-blue {
+  color: #21618C;
+}
+
+
+.icon-inventory {
+  color: #8BC34A;
+}
+
+
+.icon-purple {
+  color: #6C3483;
+}
+
+
+.icon-yellow {
+  color: #B71C1C;
+}
+
+
+.icon-invoice {
+  color: #C2185B;
+}
+
+
+.icon-orange {
+  color: #D35400;
+}
+
+
+.icon-deeporange {
+  color: #BF360C;
+}
+
+
+.icon-lightgreen {
+  color: #1B5E20;
+}
+
+
+.icon-red {
+  color: #B71C1C;
+}
+
+
+.icon-teal {
+  color: #00695C;
+}
+
+
+.icon-darkblue {
+  color: #154360;
+}
+
+
+.icon-gray {
+  color: #424949;
+}
+
+
+.icon-bluegray {
+  color: #212F3C;
+}
+.icon-social {
+  color: #00BCD4;
+}
+
+
+.icon-darkred {
+  color: #8B0000;
+}
+
+
+.product-row {
+  background: #efefef;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+li.list-group-item.customer-suggestion {
+  padding: 5px 0 5px 10px;
+  background: #ddd;
+  cursor: pointer;
+}
+
+ul#customer_suggestions {
+  position: absolute;
+  z-index: 1000;
+  width: 250px !important;
+  left: 6px;
+  top: 70px;
+}
+
+.last_purchase_prices {
+  padding: 10px;
+}
+
+
+.last_purchase_prices ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+.last_purchase_prices ul li {
+  display: inline-block;
+  background: rgb(245, 245, 245);
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid rgb(221, 221, 221);
+  margin-bottom: -10px;
+  font-size: 13px;
+}
+
+
+.form-group p {
+  color: red;
+}
+
+
+label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+
+.table thead th {
+  font-size: 12px;
+}
+
+
+.form-control {
+  font-size: 14px;
+}
+
+
+.table td {
+  font-size: 12px !important;
+  padding: 5px 7px !important;
+}
+
+
+.table td p {
+  margin-bottom: 2px;
+}
+
+
+sup {
+  color: red;
+  font-size: 14px;
+  top: -0.2em;
+}
+
+
+.chosen-container-single {
+  width: 100% !important;
+  clear: both !important;
+}
+
+
+.form-control.error:focus {
+  border: 1px solid red !important;
+}
+
+
+.error {
+  border: 1px solid red !important;
+}
+
+
+/* Shake animation */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+.shake {
+  animation: shake 0.5s;
+}
+
+
+/**neww style for due list */
+.due-scroll-container {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #f1f1f1;
+  transition: background 0.3s;
+}
+
+
+.list-group-item:hover {
+  background: #f9f9f9;
+}
+
+
+.nav-sidebar > .nav-item > .nav-treeview {
+  background-color: #666;
+}
+.bg-light .menu-open {
+  background: #efefef;
+}
+.bg-dark .menu-open {
+  background: #666 !important;
+  transition: background 0.3s;
+}
+.card-min-height {
+  min-height: 330px;
+}
+
+
+#ajax-low-stock-content .list-group-item {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+
+
+.list-group-item {
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
+
+
+.table-body-scroll {
+  max-height: 190px;
+  overflow-y: auto;
+  display: block;
+}
+
+
+.table-body-scroll table {
+  border-collapse: collapse;
+}
+
+
+.table-body-scroll thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  z-index: 2;
+}
