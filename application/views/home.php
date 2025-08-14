@@ -1,6 +1,7 @@
 <div class="home_banner">
     <div class="home_banner_all owl-carousel owl-theme">
         <div class="home_banner_Single" style="background: url('<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>') no-repeat center center;"></div>
+        <div class="home_banner_Single" style="background: url('<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>') no-repeat center center;"></div>
         <!-- <div
             class="home_banner_Single"
             style="
@@ -70,7 +71,7 @@
                         <div id="tab-1" class="tab-content current">
                             <div class="row">
                                 <?php foreach ($latest_products as $product): ?>
-                                    <div class="col-lg-4">
+                                    <div class="col-6 col-lg-4">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -80,7 +81,7 @@
                         <div id="tab-2" class="tab-content">
                             <div class="row">
                                 <?php foreach ($popular_products as $product): ?>
-                                    <div class="col-lg-4">
+                                    <div class="col-6 col-lg-4">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -90,7 +91,7 @@
                         <div id="tab-3" class="tab-content">
                             <div class="row">
                                 <?php foreach ($best_products as $product): ?>
-                                    <div class="col-lg-4">
+                                    <div class="col-6 col-lg-4">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -100,7 +101,7 @@
                         <div id="tab-4" class="tab-content">
                             <div class="row">
                                 <?php foreach ($deal_products as $product): ?>
-                                    <div class="col-lg-4">
+                                    <div class="col-6 col-lg-4">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -145,7 +146,7 @@
 
         <div class="delight_content_area">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-3 col-lg-3">
                     <div class="delight_content_single">
                         <img
                             src="<?php echo base_url('assets/frontend/images/offer.png'); ?>"
@@ -154,7 +155,7 @@
                         <h6>Best<br />Offer in Price</h6>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-3 col-lg-3">
                     <div class="delight_content_single">
                         <img
                             src="<?php echo base_url('assets/frontend/images/satisfaction.png') ?>"
@@ -163,7 +164,7 @@
                         <h6>100%<br />Satisfaction</h6>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-3 col-lg-3">
                     <div class="delight_content_single">
                         <img
                             src="<?php echo base_url('assets/frontend/images/delivery.png') ?>"
@@ -172,7 +173,7 @@
                         <h6>Safe<br />Delivery</h6>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-3 col-lg-3">
                     <div class="delight_content_single">
                         <img
                             src="<?php echo base_url('assets/frontend/images/support.png') ?>"

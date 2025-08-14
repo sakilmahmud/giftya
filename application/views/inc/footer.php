@@ -12,8 +12,6 @@
                                 West Bengal, India, 743375
                             </li>
                             <li>Phone: <a href="tel:+913369028204">(033) 6902 8204</a></li>
-                            <li>Whatsapp: <a href="https://wa.me/9732138374" target="_blank">9732138374</a></li>
-                            <li>Email: <a href="mailto:info@giftya.in">info@giftya.in</a></li>
                         </ul>
                     </div>
                 </div>
@@ -62,6 +60,10 @@
                             <li>
                                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                             </li>
+                        </ul>
+                        <ul class="footer_address">
+                            <li>Whatsapp: <a href="https://wa.me/9732138374" target="_blank">9732138374</a></li>
+                            <li>Email: <a href="mailto:info@giftya.in">info@giftya.in</a></li>
                         </ul>
                     </div>
                 </div>

@@ -8,8 +8,8 @@
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo base_url(); ?>">
-    <meta property="og:title" content="Giftya - Your Perfect Gift Destination | Find Unique & Thoughtful Presents">
-    <meta property="og:description" content="Discover a wide range of unique and thoughtful gifts for every occasion at Giftya. From personalized items to trending products, make every moment special.">
+    <meta property="og:title" content="Giftya: Custom Prints, Personalized Gifts | T-Shirts, Mugs, Mirrors, Stone & Clock Printing">
+    <meta property="og:description" content="Discover unique custom printing gifts at Giftya! Personalize T-shirts, coffee mugs, magic mirrors, stone, and clock prints. Perfect for every occasion and special memories.">
     <meta property="og:image" content="<?php echo base_url('assets/frontend/images/og_image.jpg'); ?>">
     <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID"> <!-- Replace with your actual Facebook App ID -->
 
@@ -21,7 +21,7 @@
     <meta property="twitter:image" content="<?php echo base_url('assets/frontend/images/og_image.jpg'); ?>">
     <link
         rel="stylesheet"
-        href="<?php echo base_url('assets/frontend/fontawesome-free-6.5.2-web/css/all.min.css') ?>" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/animate.min.css') ?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/aos.css') ?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/bootstrap.min.css') ?>" />
@@ -91,12 +91,26 @@
                                 endforeach;
                             endif;
                             ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('category/custom-t-shirts'); ?>">Custom T-Shirts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('category/personalized-mugs'); ?>">Personalized Mugs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('category/magic-mirrors'); ?>">Magic Mirrors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('category/photo-gifts'); ?>">Photo Gifts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('gifts-by-occasion'); ?>">Gifts by Occasion</a>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="<?php echo base_url('contact'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'contact') ? 'active' : ''; ?>">Contact Us</a>
                             </li>
                         </ul>
-
                     </div>
                 </nav>
             </div>
@@ -172,6 +186,22 @@
                                         endforeach;
                                     endif;
                                     ?>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url('category/custom-t-shirts'); ?>">Custom T-Shirts</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url('category/personalized-mugs'); ?>">Personalized Mugs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url('category/magic-mirrors'); ?>">Magic Mirrors</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url('category/photo-gifts'); ?>">Photo Gifts</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo base_url('gifts-by-occasion'); ?>">Gifts by Occasion</a>
+                                    </li>
 
                                     <li class="nav-item">
                                         <a href="<?php echo base_url('contact'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'contact') ? 'active' : ''; ?>">Contact Us</a>
