@@ -19,36 +19,6 @@
     </div>
 </div>
 
-<div class="data_sec">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 m-auto">
-                <div class="data_area_color">
-                    <div class="data_area">
-                        <img class="overlay_img" src="<?php echo base_url('assets/frontend/images/ram.png'); ?>" class="img-fluid" alt="Global Computers">
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="data data_1">
-                                    <h2>One-Stop Computer Sales & Accessories</h2>
-                                    <p>From the latest laptops, desktops, and monitors to essential accessories, we offer top-quality tech at unbeatable prices. <a href="#">Browse Products</a></p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="data data_2">
-                                    <h2>Expert Repair & AMC Services</h2>
-                                    <p>Fast and reliable service for all your computer needs — hardware, software, and annual maintenance contracts handled by certified experts. <a href="#">Book a Service</a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="latest_product_sec">
     <div class="container">
