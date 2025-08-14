@@ -19,8 +19,28 @@
     </div>
 </div>
 
+<section class="popular_collection mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="popular_collection_heading">
+                <h4>Popular <span>Collection</span></h4>
+                <a href="#">Show All</a>
+            </div>
+            <div class="popular_collection_content_area">
+                <?php
+                $count = 0;
+                foreach ($categories as $category):
+                    $count++;
+                    if ($count > 7) continue; ?>
+                    <?php $this->load->view('templates/category', ['category' => $category]); ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="latest_product_sec">
+
+<section class="latest_product">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -91,138 +111,28 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="popular_collection">
-    <div class="container">
-        <div class="row">
-            <div class="popular_collection_heading">
-                <h4>Popular <span>Collection</span></h4>
-                <a href="#">Show All</a>
-            </div>
-            <div class="popular_collection_content_area">
-                <?php
-                $count = 0;
-                foreach ($categories as $category):
-                    $count++;
-                    if ($count > 7) continue; ?>
-                    <?php $this->load->view('templates/category', ['category' => $category]); ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="psoters_sec">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="poster_single">
-                    <img
-                        src="<?php echo base_url('assets/frontend/images/poster1.jpg'); ?>"
-                        class="img-fluid"
-                        alt="poster" />
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <img
-                    src="<?php echo base_url('assets/frontend/images/poster2.jpg'); ?>"
-                    class="img-fluid"
-                    alt="poster" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="new_arrivals">
+<section class="new_arrivals mb-5">
     <div class="container">
         <div class="new_arrivals_heading">
             <h4>Explore <span>The New Arrivals</span></h4>
         </div>
         <div class="new_arrivals_content_area">
             <div class="new_arrivals_content_all owl-carousel owl-theme">
-
                 <?php foreach ($new_arrairval as $product): ?>
                     <div class="new_arrivals_content_single">
                         <div class="card">
                             <?php $this->load->view('templates/product', ['product' => $product]); ?>
                         </div>
                     </div>
-
-
                 <?php endforeach; ?>
-
-
             </div>
         </div>
     </div>
 </section>
 
-<div class="weading_collection_poster">
-    <div class="container" style="background: url('<?php echo base_url('assets/frontend/images/highlight.jpg'); ?>') no-repeat center center;"></div>
-</div>
-
-<div class="branches_sec">
-    <div class="container">
-        <div class="branches_sec_heading">
-            <h4>Our <span>Shop Branches</span></h4>
-            <p>
-                Lorem ipsum sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore aliqua. Ut enim ad minim
-                veniam Lorem ipsum dolor sit amet, consectetur adipiscing , sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
-            </p>
-        </div>
-        <div class="branches_sec_content">
-            <div class="branches_sec_single">
-                <div
-                    class="branches_sec_single_img"
-                    style="
-                background: url(<?php echo base_url('assets/frontend/images/shyambajar.png'); ?>) no-repeat center
-                  center;
-              "></div>
-                <div class="branches_sec_single_content">
-                    <p>Shyambazar</p>
-                </div>
-            </div>
-            <div class="branches_sec_single">
-                <div
-                    class="branches_sec_single_img"
-                    style="
-                background: url('<?php echo base_url('assets/frontend/images/kotulpur.jpg'); ?>') no-repeat center
-                  center;
-              "></div>
-                <div class="branches_sec_single_content">
-                    <p>Arambagh</p>
-                </div>
-            </div>
-            <div class="branches_sec_single">
-                <div
-                    class="branches_sec_single_img"
-                    style="
-                background: url(<?php echo base_url('assets/frontend/images/arambagh.jpg'); ?>) no-repeat center
-                  center;
-              "></div>
-                <div class="branches_sec_single_content">
-                    <p>Kotulpur</p>
-                </div>
-            </div>
-            <div class="branches_sec_single">
-                <div
-                    class="branches_sec_single_img"
-                    style="
-                background: url(<?php echo base_url('assets/frontend/images/kamarpukur.png') ?>) no-repeat center
-                  center;
-              "></div>
-                <div class="branches_sec_single_content">
-                    <p>Kamarpukur</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="delight">
+<section class="delight mb-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 m-auto">

@@ -14,7 +14,7 @@ class Home extends CI_Controller
     public function index()
     {
 
-        $data['title'] = "Global Computers";
+        $data['title'] = "Giftya";
 
         // Fetch the latest 8 products
         $data['latest_products'] = $this->ProductModel->get_products(6);
@@ -32,7 +32,7 @@ class Home extends CI_Controller
 
     public function contact()
     {
-        $data['title'] = "Contact :: Global Computers";
+        $data['title'] = "Contact :: Giftya";
 
         $this->load->view('inc/header', $data);
         $this->load->view('contact', $data);
@@ -48,7 +48,7 @@ class Home extends CI_Controller
         $email = $this->input->post('email');
         $msg = $this->input->post('msg');
 
-        $from_name = 'Global Computers';
+        $from_name = 'Giftya';
         $from_email = 'info@gcshop.in';
 
         // Email Setup
@@ -74,7 +74,7 @@ class Home extends CI_Controller
 
     public function cart()
     {
-        $data['title'] = "Cart :: Global Computers";
+        $data['title'] = "Cart :: Giftya";
 
         $this->load->view('inc/header', $data);
         $this->load->view('cart', $data);
@@ -83,7 +83,7 @@ class Home extends CI_Controller
 
     public function checkout()
     {
-        $data['title'] = "Checkout :: Global Computers";
+        $data['title'] = "Checkout :: Giftya";
 
         $this->load->view('inc/header', $data);
         $this->load->view('checkout', $data);
@@ -112,7 +112,7 @@ class Home extends CI_Controller
 
     public function products()
     {
-        $data['title'] = "Products :: Global Computers";
+        $data['title'] = "Products :: Giftya";
 
         // Get sorting parameter from URL, default to 'name'
         $sort_by = $this->input->get('sort_by') ?: 'name';
@@ -159,7 +159,7 @@ class Home extends CI_Controller
 
     public function category_products($category_slug)
     {
-        $data['title'] = ucfirst($category_slug) . " :: Global Computers"; // Dynamic page title
+        $data['title'] = ucfirst($category_slug) . " :: Giftya"; // Dynamic page title
 
         // Get sorting parameter from URL, default to 'name'
         $sort_by = $this->input->get('sort_by') ?: 'name';
@@ -214,7 +214,7 @@ class Home extends CI_Controller
 
     public function product_type($type_slug)
     {
-        $data['title'] = ucfirst($type_slug) . " :: Global Computers";
+        $data['title'] = ucfirst($type_slug) . " :: Giftya";
 
         // Get sorting parameter from URL, default to 'name'
         $sort_by = $this->input->get('sort_by') ?: 'name';
@@ -269,8 +269,8 @@ class Home extends CI_Controller
 
     public function terms()
     {
-        $data['title'] = "Global Computers :: Term & Conditions";
-        $data['meta_descriptions'] = "Global Computers";
+        $data['title'] = "Giftya :: Term & Conditions";
+        $data['meta_descriptions'] = "Giftya";
         $data['canonical_url'] = base_url('terms');
 
         $this->load->view('inc/header', $data);
@@ -279,8 +279,8 @@ class Home extends CI_Controller
     }
     public function privacy()
     {
-        $data['title'] = "Global Computers :: Privacy & Policy";
-        $data['meta_descriptions'] = "Global Computers";
+        $data['title'] = "Giftya :: Privacy & Policy";
+        $data['meta_descriptions'] = "Giftya";
         $data['canonical_url'] = base_url('privacy');
 
         $this->load->view('inc/header', $data);

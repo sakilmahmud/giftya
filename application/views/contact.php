@@ -33,7 +33,7 @@
             <!-- Contact Details and Map -->
             <div class="col-lg-6">
                 <div class="con_address mb-4">
-                    <h4>GLOBAL COMPUTERS</h4>
+                    <h4>Giftya</h4>
                     <p>Gholar More, Usthi, South 24 Parganas<br>
                         West Bengal, India, 743375</p>
                     <p>

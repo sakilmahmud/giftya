@@ -5,12 +5,7 @@
                 <div class="col-lg-4">
                     <div class="footer_col footer_about">
                         <a href="<?php echo base_url(); ?>">
-                            <img src="<?php echo getSetting('admin_logo') ? base_url(getSetting('admin_logo')) : base_url('assets/frontend/images/logo.png') ?>" class="img-fluid" alt="GC Footer Logo" /></a>
-                        <!-- <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam.
-                  </p> -->
+                            <img src="<?php echo getSetting('admin_logo') ? base_url(getSetting('admin_logo')) : base_url('assets/frontend/images/logo_footer.png') ?>" class="img-fluid" alt="GC Footer Logo" /></a>
                         <ul class="footer_address">
                             <li>
                                 Address: Gholar More, Usthi, South 24 Parganas<br>
@@ -18,7 +13,7 @@
                             </li>
                             <li>Phone: <a href="tel:+913369028204">(033) 6902 8204</a></li>
                             <li>Whatsapp: <a href="https://wa.me/9732138374" target="_blank">9732138374</a></li>
-                            <li>Email: <a href="mailto:info@gcshop.in">info@gcshop.in</a>, <a href="mailto:globalcomputers19@gmail.com">globalcomputers19@gmail.com</a></li>
+                            <li>Email: <a href="mailto:info@giftya.in">info@giftya.in</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,10 +21,10 @@
                     <div class="footer_col footer_list">
                         <h5>Services</h5>
                         <ul>
-                            <li><a href="#">PC Services</a></li>
-                            <li><a href="#">Laptop Services</a></li>
-                            <li><a href="#">Printer Services</a></li>
-                            <li><a href="#">CCTV Services</a></li>
+                            <li><a href="<?php echo base_url('category/personalized-gifts'); ?>">Personalized Gifts</a></li>
+                            <li><a href="<?php echo base_url('category/corporate-gifting'); ?>">Corporate Gifting</a></li>
+                            <li><a href="<?php echo base_url('category/gift-hampers'); ?>">Gift Hampers</a></li>
+                            <li><a href="<?php echo base_url('category/occasion-gifts'); ?>">Occasion Gifts</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +54,7 @@
                         <h5>Follow Us</h5>
                         <ul>
                             <li>
-                                <a href="https://www.facebook.com/gcshop.in" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/giftya" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -77,7 +72,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <p>© Global Computers <?= date('Y') ?> | All Rights Reserved</p>
+                    <p>© Giftya <?= date('Y') ?> | All Rights Reserved</p>
                 </div>
                 <div class="col-lg-6">
                     <ul>

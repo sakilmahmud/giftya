@@ -57,9 +57,6 @@ body {
   overflow-x: hidden;
   font-family: "Poppins-Regular";
 }
-.container {
-  max-width: 1200px;
-}
 p {
   line-height: 150%;
 }
@@ -82,7 +79,7 @@ a {
   font-weight: 600;
 }
 :root {
-  --main-color: #37b44a;
+  --main-color: #ff6666;
   --secondary-color: #e39600;
   --black-scondary: #040404;
   --placeholder: #b8b8b8;
@@ -145,20 +142,14 @@ header {
 .header_top {
   padding: 5px 0px;
   background: var(--white);
-}
-.header_top .container {
   display: flex;
-  width: 100%;
   align-items: center;
+  justify-content: space-between;
 }
 .header_bottom {
   display: block;
   width: 100%;
-  background: var(--grey);
-  padding: 5px 0px;
-}
-.header_links {
-  margin-left: auto;
+  background: #ffeaea;
 }
 .header_links ul {
   padding-left: 10px;
@@ -188,7 +179,7 @@ header {
   align-items: center;
   height: 45px;
   width: 450px;
-  margin-left: 50px;
+  margin: 0 auto;
   justify-content: space-between;
 }
 .header_search_btn {
@@ -221,7 +212,7 @@ header {
   color: var(--black-scondary);
   font-size: 14px;
   text-transform: uppercase;
-  font-family: Seoge-Normal;
+  font-family: Poppins-Regular;
 }
 .header_bottom .navbar-nav .nav-link:hover {
   color: var(--main-color);
@@ -232,7 +223,7 @@ header {
 
 .home_banner {
   padding: 0px 0px 30px 0px;
-  margin-top: 150px;
+  margin-top: 7%;
 }
 .home_banner_Single {
   width: 100%;
@@ -264,9 +255,7 @@ header {
 .latest_product_left img {
   margin-bottom: 10px;
 }
-.latest_product_sec {
-  padding-top: 100px;
-}
+
 .latest_product_sec .card {
   padding: 10px 0px;
   background: #ffffff;
@@ -354,9 +343,6 @@ header {
   display: inherit;
 }
 
-.popular_collection {
-  padding: 50px 0px;
-}
 .popular_collection_single_img img {
   width: 127px;
   height: 127px;
@@ -416,9 +402,6 @@ header {
   width: 100%;
 }
 
-.new_arrivals {
-  padding: 100px 0px;
-}
 .new_arrivals .card {
   background: #ffffff;
   box-shadow: 10px 10px 20px #cfcfcf, -10px -10px 20px #ffffff;
@@ -650,9 +633,6 @@ header {
   display: none;
 }
 
-.delight {
-  padding: 0px 0px 100px 0px;
-}
 .delight_header {
   margin-bottom: 50px;
 }
