@@ -1,8 +1,10 @@
-<div class="home_banner">
-    <div class="home_banner_all owl-carousel owl-theme">
-        <div class="home_banner_Single" style="background: url('<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>') no-repeat center center;"></div>
-        <div class="home_banner_Single" style="background: url('<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>') no-repeat center center;"></div>
-        <!-- <div
+<section class="banner">
+    <div class="container">
+        <div class="home_banner home_banner_full_width">
+            <div class="home_banner_all owl-carousel owl-theme">
+                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>" alt=""></div>
+                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>" alt=""></div>
+                <!-- <div
             class="home_banner_Single"
             style="
             background: url('<?php echo base_url('assets/frontend/images/b2.jpg'); ?>') no-repeat center center;
@@ -17,9 +19,10 @@
             style="
             background: url('<?php echo base_url('assets/frontend/images/b4.jpg'); ?>') no-repeat center center;
           "></div> -->
+            </div>
+        </div>
     </div>
-</div>
-
+</section>
 <section class="popular_collection mb-5">
     <div class="container">
         <div class="row">
