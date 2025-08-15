@@ -35,7 +35,7 @@
                 $count = 0;
                 foreach ($categories as $category):
                     $count++;
-                    if ($count > 7) continue; ?>
+                    if ($count > 9) continue; ?>
                     <?php $this->load->view('templates/category', ['category' => $category]); ?>
                 <?php endforeach; ?>
             </div>
