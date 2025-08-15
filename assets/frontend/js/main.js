@@ -41,12 +41,8 @@ $(document).ready(function () {
     smartSpeed: 700,
     autoplayHoverPause: true,
     autoHeight: true,
-    nav: true,
-    dots: true,
-    navText: [
-      "<img src='assets/images/arrow_left.png' class='img-fluid' alt=''>",
-      "<img src='assets/images/arrow_right.png' class='img-fluid' alt=''>",
-    ],
+    nav: false,
+    dots: false,
   });
 
   $(".new_arrivals_content_all").owlCarousel({
@@ -61,10 +57,10 @@ $(document).ready(function () {
     dots: true,
     responsive: {
       0: {
-        items: 1,
+        items: 2,
       },
       480: {
-        items: 1,
+        items: 2,
       },
       992: {
         items: 4,
@@ -144,6 +140,11 @@ $(document).ready(function () {
     value = isNaN(value) ? 1 : value;
     value > 1 ? value-- : (value = 1);
     $("#number").val(value);
+  });
+
+  $(".search_icon").click(function (e) {
+    e.preventDefault();
+    $(".search_bar_mobile").slideToggle();
   });
 });
 

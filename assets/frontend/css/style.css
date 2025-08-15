@@ -351,11 +351,12 @@ header {
 }
 
 .popular_collection_single_img img {
-  width: 127px;
-  height: 127px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
   outline: 1px solid var(--secondary-color);
-  outline-offset: 10px;
+  outline-offset: 2px;
 }
 .popular_collection_heading,
 .new_arrivals_heading {
@@ -388,13 +389,14 @@ header {
   font-size: 15px;
 }
 .popular_collection_content_area {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
   margin-top: 20px;
 }
 .popular_collection_single {
   text-align: center;
-  width: 14%;
+  /* width: 14%; */
+  padding: 15px;
 }
 .popular_collection_single h6 {
   margin-top: 25px;
@@ -407,6 +409,7 @@ header {
   display: flex;
   justify-content: center;
   width: 100%;
+  /* height: 150px; */
 }
 
 .new_arrivals .card {
@@ -2325,7 +2328,7 @@ ul.pagination li.active a {
   }
   .popular_collection_single {
     text-align: center;
-    width: 48%;
+    /* width: 48%; */
     margin: 10px 0px;
   }
   .popular_collection_content_area {
@@ -2407,11 +2410,23 @@ ul.pagination li.active a {
     margin-right: 0px;
     width: 60px;
   }
+  .popular_collection_heading {
+    margin-bottom: 0px !important;
+  }
+  .popular_collection_content_area {
+    margin-top: 0px !important;
+  }
   .delight {
     padding: 0px 0px 50px 0px;
   }
   .popular_collection_single h6 a {
-    font-size: 18px;
+    font-size: 12px;
+  }
+  .popular_collection_single {
+    padding: 15px 5px;
+  }
+  .popular_collection_single h6 {
+    margin-top: 10px;
   }
   .listing {
     margin-top: 135px;
@@ -2458,6 +2473,6 @@ ul.pagination li.active a {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 98%;
+    /* max-width: 98%; */
   }
 }

@@ -4,38 +4,21 @@
             <div class="home_banner_all owl-carousel owl-theme">
                 <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>" alt=""></div>
                 <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>" alt=""></div>
-                <!-- <div
-            class="home_banner_Single"
-            style="
-            background: url('<?php echo base_url('assets/frontend/images/b2.jpg'); ?>') no-repeat center center;
-          "></div>
-        <div
-            class="home_banner_Single"
-            style="
-            background: url('<?php echo base_url('assets/frontend/images/b3.jpg'); ?>') no-repeat center center;
-          "></div>
-        <div
-            class="home_banner_Single"
-            style="
-            background: url('<?php echo base_url('assets/frontend/images/b4.jpg'); ?>') no-repeat center center;
-          "></div> -->
             </div>
         </div>
     </div>
 </section>
-<section class="popular_collection mb-5">
+<section class="popular_collection mb-0 mb-md-5">
     <div class="container">
         <div class="row">
             <div class="popular_collection_heading">
                 <h4>Popular <span>Collection</span></h4>
                 <a href="#">Show All</a>
             </div>
-            <div class="popular_collection_content_area">
+            <div class="popular_collection_content_area owl-carousel owl-theme">
                 <?php
-                $count = 0;
                 foreach ($categories as $category):
-                    $count++;
-                    if ($count > 9) continue; ?>
+                ?>
                     <?php $this->load->view('templates/category', ['category' => $category]); ?>
                 <?php endforeach; ?>
             </div>
@@ -117,7 +100,7 @@
     </div>
 </section>
 
-<section class="new_arrivals mb-5">
+<section class="new_arrivals mb-0 mb-md-5">
     <div class="container">
         <div class="new_arrivals_heading">
             <h4>Explore <span>The New Arrivals</span></h4>
@@ -136,7 +119,7 @@
     </div>
 </section>
 
-<section class="delight mb-5">
+<section class="delight mb-0 mb-md-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 m-auto">
@@ -189,3 +172,24 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+        $('.popular_collection_content_area').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 4
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 7
+                }
+            }
+        });
+    });
+</script>
