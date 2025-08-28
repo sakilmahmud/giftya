@@ -38,6 +38,10 @@
                     </ul>
                 </div>
             </div>
+            <div class="single_pro_button" style="margin-top: 20px; text-align: center;">
+                <a href="#" class="add_to_cart_btn">Add to Cart</a>
+                <a href="#" class="buy_now_btn">Buy Now</a>
+            </div>
         </div>
         <div class="col-lg-6 mt-5">
             <div class="single_product_content_box">
@@ -45,34 +49,49 @@
                     <?php echo $product['name']; ?>
                 </h4>
 
-                <div class="container mt-1">
-                    <div class="rating">
-                        <input type="radio" name="rating" value="5" id="star5">
-                        <label for="star5"><i class="fa fa-star"></i></label>
-
-                        <input type="radio" name="rating" value="4" id="star4">
-                        <label for="star4"><i class="fa fa-star"></i></label>
-
-                        <input type="radio" name="rating" value="3" id="star3">
-                        <label for="star3"><i class="fa fa-star"></i></label>
-
-                        <input type="radio" name="rating" value="2" id="star2">
-                        <label for="star2"><i class="fa fa-star"></i></label>
-
-                        <input type="radio" name="rating" value="1" id="star1">
-                        <label for="star1"><i class="fa fa-star"></i></label>
+                <div class="product_rating_display">
+                    <div class="rating_stars">
+                        <i class="fa fa-star" style="color: gold;"></i>
+                        <i class="fa fa-star" style="color: gold;"></i>
+                        <i class="fa fa-star" style="color: gold;"></i>
+                        <i class="fa fa-star" style="color: gold;"></i>
+                        <i class="fa fa-star-half-alt" style="color: gold;"></i> <!-- Half star for 4.5 -->
                     </div>
+                    <span class="rating_number" style="margin-left: 5px;">4.5 (120 ratings)</span>
                 </div>
 
                 <div class="single_product_col">
                     <h5 class="price_single_product">
-                        <?php echo ($product['sale_price'] > 0)
-                            ? '<del>₹' . number_format($product['regular_price'], 2) . '</del> <span class="sale-price">₹' . number_format($product['sale_price'], 2) . '</span>'
-                            : '₹' . number_format($product['regular_price'], 2); ?>
+                        <?php
+                        if ($product['sale_price'] > 0) {
+                            $regular_price = $product['regular_price'];
+                            $sale_price = $product['sale_price'];
+                            $discount_percentage = (($regular_price - $sale_price) / $regular_price) * 100;
+                            echo '<del>₹' . number_format($regular_price, 2) . '</del> <span class="sale-price">₹' . number_format($sale_price, 2) . '</span>';
+                            echo '<span class="discount_percentage"> (' . round($discount_percentage) . '% off)</span>';
+                        } else {
+                            echo '₹' . number_format($product['regular_price'], 2);
+                        }
+                        ?>
                     </h5>
                     <!-- <img src="<?php echo base_url(); ?>assets/frontend/images/lineheart.png" class="img-fluid heart_clickable" alt=""> -->
                 </div>
-                <p class="tax_data">Inclusive of all taxes</p>
+                <p class="tax_data" style="margin-bottom: 5px;">Inclusive of all taxes</p>
+                <p class="delivery_date" style="margin-top: 0;">Estimated Delivery: 29th Aug - 30th Aug</p>
+                <div class="underline"></div>
+
+                <div class="upload_photo_option">
+                    <h6>Upload Photos (Mandatory)</h6>
+                    <input type="file" id="product_photos" name="product_photos[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.pdf" required>
+                    <p style="font-size: 12px; color: red; margin-top: 5px;">Please upload at least two photos (for now).</p>
+                    <small style="font-size: 10px;">Accepted formats: JPG, PNG, WEBP, GIF, PDF</small>
+                </div>
+                <div class="underline"></div>
+
+                <div class="custom_message_option" style="margin-top: 15px;">
+                    <h6>Custom Message (Optional)</h6>
+                    <textarea id="custom_message" name="custom_message" rows="4" placeholder="Write your custom message here..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                </div>
                 <div class="underline"></div>
 
                 <div class="single_pro_data">
@@ -101,11 +120,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="single_pro_button">
-                    <a href="#" class="add_to_cart_btn">Add to Cart</a>
-                    <a href="#" class="buy_now_btn">Buy Now</a>
                 </div>
-            </div>
         </div>
     </div>
 </div>
