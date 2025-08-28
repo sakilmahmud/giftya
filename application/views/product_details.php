@@ -47,13 +47,13 @@
                 </h4>
 
                 <div class="product_rating_display">
-                    <div class="rating_stars">
+                    <div class="rating_stars" style="height: 36px;">
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star-half-alt" style="color: gold;"></i> <!-- Half star for 4.5 -->
-                        <span class="rating_number" style="margin-left: 5px;">4.5 (120 ratings)</span><br><br>
+                        <span class="rating_number" style="margin-left: 5px;"><span class="rate-color">4.5</span> (120 ratings)</span><br><br>
                     </div>
 
                 </div>
@@ -65,8 +65,8 @@
                             $regular_price = $product['regular_price'];
                             $sale_price = $product['sale_price'];
                             $discount_percentage = (($regular_price - $sale_price) / $regular_price) * 100;
-                            echo '<del>₹' . number_format($regular_price, 2) . '</del> <span class="sale-price">₹' . number_format($sale_price, 2) . '</span>';
-                            echo '&nbsp;&nbsp;<span class="discount_percentage" style="background:var(--main-color);; color:#fff; padding:2px 6px; border-radius:4px; font-size:14px;"> (' . round($discount_percentage) . '% off)</span>';
+                            echo '<del>₹' . number_format($regular_price, 2) . '</del> <span class="sale-price" style="color: var(--main-color);font-weight: bolder;">₹' . number_format($sale_price, 2) . '</span>';
+                            echo '&nbsp;&nbsp;<span class="discount_percentage" style="background:var(--main-color);; color:#fff; padding:2px 6px; border-radius:4px; font-size:13px; position:absolute;"> (' . round($discount_percentage) . '% off)</span>';
                         } else {
                             echo '₹' . number_format($product['regular_price'], 2);
                         }
@@ -76,11 +76,13 @@
                 </div>
                 <p class="tax_data" style="margin-bottom: 5px;">Inclusive of all taxes</p>
                 <p class="delivery_date" style="margin-top: 0;">Estimated Delivery: 29th Aug - 30th Aug</p>
-                <div class="underline"></div>
-
+                
                 <div class="upload_photo_option">
-                    <h6>Upload Photos (Mandatory)</h6>
-                    <input type="file" id="product_photos" name="product_photos[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.pdf" required>
+                    <h6>Upload 2 Photos</h6>
+                    <div class=" border border-border rounded border-2">
+                    <label for="product_photos" class="custom-upload ">📁 Upload Files</label>
+                    <input type="file" id="product_photos"  name="product_photos[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.pdf" required class="file-input">
+                    </div>
                     <p style="font-size: 12px; color: red; margin-top: 5px;">Please upload at least two photos.</p>
                     <small style="font-size: 10px;">Accepted formats: JPG, PNG, WEBP, GIF, PDF</small>
                 </div>

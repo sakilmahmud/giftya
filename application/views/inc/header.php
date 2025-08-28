@@ -73,6 +73,9 @@
 </head>
 
 <body>
+    <div class="top-slide-bar">
+        <span class="font-medium" style="font-size: 14px;">Free Shipping & Cash on Delivery | 7602855329</span>
+    </div>
     <header class="fixed-top web_header">
         <div class="container">
             <div class="header_top">

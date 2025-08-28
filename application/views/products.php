@@ -150,7 +150,7 @@
                     <div class="all_product_listing">
                         <div class="row">
                             <?php foreach ($products as $product): ?>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 mt-5">
                                     <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                 </div>
                             <?php endforeach; ?>
