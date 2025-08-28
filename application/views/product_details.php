@@ -39,6 +39,26 @@
                 </div>
             </div>
             <div class="single_pro_button" style="margin-top: 20px; text-align: center;">
+                <div class="single_pro_quantity">
+                    <!-- <h6>Quantity</h6> -->
+                    <form>
+                        <div
+                            class="value-button"
+                            id="decrease"
+                            onclick="decreaseValue()"
+                            value="Decrease Value">
+                            <i class="fa-solid fa-minus"></i>
+                        </div>
+                        <input type="number" id="number" value="1" />
+                        <div
+                            class="value-button"
+                            id="increase"
+                            onclick="increaseValue()"
+                            value="Increase Value">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </form>
+                </div>
                 <a href="#" class="add_to_cart_btn">Add to Cart</a>
                 <a href="#" class="buy_now_btn">Buy Now</a>
             </div>
@@ -56,8 +76,9 @@
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star" style="color: gold;"></i>
                         <i class="fa fa-star-half-alt" style="color: gold;"></i> <!-- Half star for 4.5 -->
+                        <span class="rating_number" style="margin-left: 5px;">4.5 (120 ratings)</span><br><br>
                     </div>
-                    <span class="rating_number" style="margin-left: 5px;">4.5 (120 ratings)</span>
+
                 </div>
 
                 <div class="single_product_col">
@@ -83,7 +104,7 @@
                 <div class="upload_photo_option">
                     <h6>Upload Photos (Mandatory)</h6>
                     <input type="file" id="product_photos" name="product_photos[]" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.pdf" required>
-                    <p style="font-size: 12px; color: red; margin-top: 5px;">Please upload at least two photos (for now).</p>
+                    <p style="font-size: 12px; color: red; margin-top: 5px;">Please upload at least two photos.</p>
                     <small style="font-size: 10px;">Accepted formats: JPG, PNG, WEBP, GIF, PDF</small>
                 </div>
                 <div class="underline"></div>
@@ -94,104 +115,84 @@
                 </div>
                 <div class="underline"></div>
 
-                <div class="single_pro_data">
+                <!-- <div class="single_pro_data">
                     <h6>Product Details</h6>
                     <?php echo $product['highlight_text']; ?>
-                </div>
-                <div class="underline"></div>
+                </div> -->
+                <!-- <div class="underline"></div> -->
 
-                <div class="single_pro_quantity">
-                    <h6>Quantity</h6>
-                    <form>
-                        <div
-                            class="value-button"
-                            id="decrease"
-                            onclick="decreaseValue()"
-                            value="Decrease Value">
-                            <i class="fa-solid fa-minus"></i>
-                        </div>
-                        <input type="number" id="number" value="1" />
-                        <div
-                            class="value-button"
-                            id="increase"
-                            onclick="increaseValue()"
-                            value="Increase Value">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </form>
-                </div>
-                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
-<div class="single_pro_description">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 m-auto">
-                <div class="wrapper">
-                    <input type="radio" name="slider" checked id="desp" />
-                    <input type="radio" name="slider" id="fab" />
-                    <input type="radio" name="slider" id="return" />
-                    <input type="radio" name="slider" id="help" />
-                    <nav>
-                        <label for="desp" class="desp"><i class="fas fa-home"></i>Description</label>
-                        <label for="return" class="return"><i class="fas fa-code"></i>Delivery and Returns</label>
-                        <label for="help" class="help"><i class="far fa-envelope"></i>Need Help</label>
-                        <div class="slider"></div>
-                    </nav>
-                    <section class="tab_content_area">
-                        <div class="content content-1">
-                            <div class="title"><?php echo $product['name']; ?></div>
-                            <?php echo $product['description']; ?>
-                        </div>
-                        <div class="content content-3">
-                            <div class="title">This is a Code content</div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Iure, debitis nesciunt! Consectetur officiis, libero nobis
-                                dolorem pariatur quisquam temporibus. Labore quaerat neque
-                                facere itaque laudantium odit veniam consectetur numquam
-                                delectus aspernatur, perferendis repellat illo sequi
-                                excepturi quos ipsam aliquid est consequuntur.
-                            </p>
-                        </div>
-                        <div class="content content-4">
-                            <div class="title">This is a Help content</div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Enim reprehenderit null itaq, odio repellat asperiores vel
-                                voluptatem magnam praesentium, eveniet iure ab facere
-                                officiis. Quod sequi vel, rem quam provident soluta nihil,
-                                eos. Illo oditu omnis cumque praesentium voluptate maxime
-                                voluptatibus facilis nulla ipsam quidem mollitia! Veniam,
-                                fuga, possimus. Commodi, fugiat aut ut quorioms stu
-                                necessitatibus, cumque laborum rem provident tenetur.
-                            </p>
-                        </div>
-                    </section>
+    <div class="single_pro_description">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="wrapper">
+                        <input type="radio" name="slider" checked id="desp" />
+                        <input type="radio" name="slider" id="fab" />
+                        <input type="radio" name="slider" id="return" />
+                        <input type="radio" name="slider" id="help" />
+                        <nav>
+                            <label for="desp" class="desp"><i class="fas fa-home"></i>Description</label>
+                            <label for="return" class="return"><i class="fas fa-code"></i>Delivery and Returns</label>
+                            <label for="help" class="help"><i class="far fa-envelope"></i>Need Help</label>
+                            <div class="slider"></div>
+                        </nav>
+                        <section class="tab_content_area">
+                            <div class="content content-1">
+                                <div class="title"><?php echo $product['name']; ?></div>
+                                <?php echo $product['description']; ?>
+                            </div>
+                            <div class="content content-3">
+                                <div class="title">This is a Code content</div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Iure, debitis nesciunt! Consectetur officiis, libero nobis
+                                    dolorem pariatur quisquam temporibus. Labore quaerat neque
+                                    facere itaque laudantium odit veniam consectetur numquam
+                                    delectus aspernatur, perferendis repellat illo sequi
+                                    excepturi quos ipsam aliquid est consequuntur.
+                                </p>
+                            </div>
+                            <div class="content content-4">
+                                <div class="title">This is a Help content</div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Enim reprehenderit null itaq, odio repellat asperiores vel
+                                    voluptatem magnam praesentium, eveniet iure ab facere
+                                    officiis. Quod sequi vel, rem quam provident soluta nihil,
+                                    eos. Illo oditu omnis cumque praesentium voluptate maxime
+                                    voluptatibus facilis nulla ipsam quidem mollitia! Veniam,
+                                    fuga, possimus. Commodi, fugiat aut ut quorioms stu
+                                    necessitatibus, cumque laborum rem provident tenetur.
+                                </p>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="similar_products_sec">
-    <div class="container">
-        <div class="heading">
-            <h4>Similar <span>Products</span></h4>
-            <div class="underline"></div>
-        </div>
-        <div class="similar_products_all owl-carousel owl-theme">
-            <?php foreach ($similar_products as $product): ?>
-                <div class="similar_single_product">
-                    <div class="single_product_listing">
-                        <?php $this->load->view('templates/product', ['product' => $product]); ?>
+    <div class="similar_products_sec">
+        <div class="container">
+            <div class="heading">
+                <h4>Similar <span>Products</span></h4>
+                <div class="underline"></div>
+            </div>
+            <div class="similar_products_all owl-carousel owl-theme">
+                <?php foreach ($similar_products as $product): ?>
+                    <div class="similar_single_product">
+                        <div class="single_product_listing">
+                            <?php $this->load->view('templates/product', ['product' => $product]); ?>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="<?php echo base_url(); ?>assets/frontend/js/lightslider.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/frontend/js/lightslider.min.js"></script>

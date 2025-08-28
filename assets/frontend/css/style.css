@@ -1317,9 +1317,6 @@ input[type="range"]:focus::-ms-fill-upper {
 .prosize h5 {
   font-size: 18px;
 }
-.single_pro_quantity {
-  margin-bottom: 15px;
-}
 .single_pro_quantity h6 {
   margin-bottom: 15px;
 }
@@ -1337,6 +1334,10 @@ input[type="range"]:focus::-ms-fill-upper {
 }
 .single_pro_button {
   margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 .single_pro_button a {
   padding: 10px 30px;
@@ -1352,7 +1353,7 @@ input[type="range"]:focus::-ms-fill-upper {
 .buy_now_btn {
   border: 1px solid var(--main-color);
   color: var(--main-color);
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 .similar_products_sec {
   padding: 50px 0px;
