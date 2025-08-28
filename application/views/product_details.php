@@ -38,30 +38,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="single_pro_button" style="margin-top: 20px; text-align: center;">
-                <div class="single_pro_quantity">
-                    <!-- <h6>Quantity</h6> -->
-                    <form>
-                        <div
-                            class="value-button"
-                            id="decrease"
-                            onclick="decreaseValue()"
-                            value="Decrease Value">
-                            <i class="fa-solid fa-minus"></i>
-                        </div>
-                        <input type="number" id="number" value="1" />
-                        <div
-                            class="value-button"
-                            id="increase"
-                            onclick="increaseValue()"
-                            value="Increase Value">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
-                    </form>
-                </div>
-                <a href="#" class="add_to_cart_btn">Add to Cart</a>
-                <a href="#" class="buy_now_btn">Buy Now</a>
-            </div>
+
         </div>
         <div class="col-lg-6" style="margin-top:5rem !important">
             <div class="single_product_content_box">
@@ -89,7 +66,7 @@
                             $sale_price = $product['sale_price'];
                             $discount_percentage = (($regular_price - $sale_price) / $regular_price) * 100;
                             echo '<del>₹' . number_format($regular_price, 2) . '</del> <span class="sale-price">₹' . number_format($sale_price, 2) . '</span>';
-                            echo '<span class="discount_percentage"> (' . round($discount_percentage) . '% off)</span>';
+                            echo '&nbsp;&nbsp;<span class="discount_percentage" style="background:var(--main-color);; color:#fff; padding:2px 6px; border-radius:4px; font-size:14px;"> (' . round($discount_percentage) . '% off)</span>';
                         } else {
                             echo '₹' . number_format($product['regular_price'], 2);
                         }
@@ -114,6 +91,31 @@
                     <textarea id="custom_message" name="custom_message" rows="4" placeholder="Write your custom message here..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
                 </div>
                 <div class="underline"></div>
+
+                <div class="single_pro_button" style="margin-top: 20px; text-align: center;">
+                    <div class="single_pro_quantity">
+                        <!-- <h6>Quantity</h6> -->
+                        <form>
+                            <div
+                                class="value-button"
+                                id="decrease"
+                                onclick="decreaseValue()"
+                                value="Decrease Value">
+                                <i class="fa-solid fa-minus"></i>
+                            </div>
+                            <input type="number" id="number" value="1" />
+                            <div
+                                class="value-button"
+                                id="increase"
+                                onclick="increaseValue()"
+                                value="Increase Value">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </form>
+                    </div>
+                    <a href="#" class="add_to_cart_btn" style="color: var(--main-color); background: white; border: 1px solid;">Add to Cart</a>
+                    <a href="#" class="buy_now_btn" style="background-color: var(--main-color); color: #fff;">Buy Now</a>
+                </div>
 
                 <!-- <div class="single_pro_data">
                     <h6>Product Details</h6>
