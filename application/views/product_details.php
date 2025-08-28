@@ -12,7 +12,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 mt-5">
+        <div class="col-lg-6 mt-7">
             <div class="card">
                 <div class="demo">
                     <ul id="lightSlider">
