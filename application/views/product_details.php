@@ -12,7 +12,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 mt-7">
+        <div class="col-lg-6 mt-6">
             <div class="card">
                 <div class="demo">
                     <ul id="lightSlider">
@@ -63,7 +63,7 @@
                 <a href="#" class="buy_now_btn">Buy Now</a>
             </div>
         </div>
-        <div class="col-lg-6 mt-5">
+        <div class="col-lg-6 mt-6">
             <div class="single_product_content_box">
                 <h4 class="single_product_heading">
                     <?php echo $product['name']; ?>
