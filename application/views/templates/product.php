@@ -4,10 +4,10 @@ $image_url = ($product['featured_image'] != "") ? base_url('uploads/products/' .
 ?>
 <?php $endpoint = ($product['slug'] != "") ? $product['slug'] : $product['id']; ?>
 <div class="single_product_listing">
-    <div class="single_pro_work">
+    <!-- <div class="single_pro_work">
         <img src="<?php echo base_url(); ?>assets/frontend/images/shopping-cart.png" class="img-fluid" alt="">
         <img src="<?php echo base_url(); ?>assets/frontend/images/lineheart.png" class="img-fluid heart_clickable" alt="">
-    </div>
+    </div> -->
     <div class="single_product_listing_img">
         <a href="<?php echo base_url('products/' . $endpoint); ?>">
             <img
@@ -15,6 +15,7 @@ $image_url = ($product['featured_image'] != "") ? base_url('uploads/products/' .
                 alt="<?php echo $product['name']; ?>" />
         </a>
     </div>
+    
     <div class="single_product_listing_content">
         <h6><a href="<?php echo base_url('products/' . $endpoint); ?>"><?php echo $product['name']; ?></a></h6>
         <div class="price">

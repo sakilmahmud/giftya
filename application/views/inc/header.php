@@ -31,6 +31,45 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style.css') ?>" />
 
     <script src="<?php echo base_url('assets/frontend/js/jquery3.7.1.min.js'); ?>"></script>
+    <style>
+        /* .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+            position: absolute;
+            left: 0;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .rating input:checked~label i {
+            color: gold;
+        }
+
+        .rating label:hover i,
+        .rating label:hover~label i {
+            color: gold;
+        }
+
+        */
+
+        .rating input:checked~label i {
+            color: gold;
+        }
+
+        .rating label:hover i,
+        .rating label:hover~label i {
+            color: gold;
+        }
+    </style>
 </head>
 
 <body>

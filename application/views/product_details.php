@@ -12,7 +12,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 mt-5">
             <div class="card">
                 <div class="demo">
                     <ul id="lightSlider">
@@ -39,12 +39,30 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 mt-5">
             <div class="single_product_content_box">
-                <h6 class="pro_id"><?php echo getSetting('invoice_prefix'); ?><?php echo $product['id']; ?></h6>
                 <h4 class="single_product_heading">
                     <?php echo $product['name']; ?>
                 </h4>
+
+                <div class="container mt-1">
+                    <div class="rating">
+                        <input type="radio" name="rating" value="5" id="star5">
+                        <label for="star5"><i class="fa fa-star"></i></label>
+
+                        <input type="radio" name="rating" value="4" id="star4">
+                        <label for="star4"><i class="fa fa-star"></i></label>
+
+                        <input type="radio" name="rating" value="3" id="star3">
+                        <label for="star3"><i class="fa fa-star"></i></label>
+
+                        <input type="radio" name="rating" value="2" id="star2">
+                        <label for="star2"><i class="fa fa-star"></i></label>
+
+                        <input type="radio" name="rating" value="1" id="star1">
+                        <label for="star1"><i class="fa fa-star"></i></label>
+                    </div>
+                </div>
 
                 <div class="single_product_col">
                     <h5 class="price_single_product">
@@ -52,7 +70,7 @@
                             ? '<del>₹' . number_format($product['regular_price'], 2) . '</del> <span class="sale-price">₹' . number_format($product['sale_price'], 2) . '</span>'
                             : '₹' . number_format($product['regular_price'], 2); ?>
                     </h5>
-                    <img src="<?php echo base_url(); ?>assets/frontend/images/lineheart.png" class="img-fluid heart_clickable" alt="">
+                    <!-- <img src="<?php echo base_url(); ?>assets/frontend/images/lineheart.png" class="img-fluid heart_clickable" alt=""> -->
                 </div>
                 <p class="tax_data">Inclusive of all taxes</p>
                 <div class="underline"></div>

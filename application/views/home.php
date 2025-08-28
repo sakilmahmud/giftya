@@ -30,7 +30,7 @@
 <section class="latest_product">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <div class="latest_product_left">
                     <img
                         src="<?php echo base_url('assets/frontend/images/product_add_1.jpg'); ?>"
@@ -41,8 +41,8 @@
                         class="img-fluid"
                         alt="adds" />
                 </div>
-            </div>
-            <div class="col-lg-9">
+            </div> -->
+            <div class="col-lg-12">
                 <div class="latest_product_right">
                     <div class="latest_product_right_heading">
                         <h4>Latest Product</h4>
@@ -57,7 +57,7 @@
                         <div id="tab-1" class="tab-content current">
                             <div class="row">
                                 <?php foreach ($latest_products as $product): ?>
-                                    <div class="col-6 col-lg-4">
+                                    <div class="col-6 col-lg-3">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -67,7 +67,7 @@
                         <div id="tab-2" class="tab-content">
                             <div class="row">
                                 <?php foreach ($popular_products as $product): ?>
-                                    <div class="col-6 col-lg-4">
+                                    <div class="col-6 col-lg-3">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -77,7 +77,7 @@
                         <div id="tab-3" class="tab-content">
                             <div class="row">
                                 <?php foreach ($best_products as $product): ?>
-                                    <div class="col-6 col-lg-4">
+                                    <div class="col-6 col-lg-3">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -87,7 +87,7 @@
                         <div id="tab-4" class="tab-content">
                             <div class="row">
                                 <?php foreach ($deal_products as $product): ?>
-                                    <div class="col-6 col-lg-4">
+                                    <div class="col-6 col-lg-3">
                                         <?php $this->load->view('templates/product', ['product' => $product]); ?>
                                     </div>
                                 <?php endforeach; ?>

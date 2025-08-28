@@ -17,10 +17,10 @@ class Home extends CI_Controller
         $data['title'] = "Giftya";
 
         // Fetch the latest 8 products
-        $data['latest_products'] = $this->ProductModel->get_products(6);
-        $data['popular_products'] = $this->ProductModel->get_products(6, "RAND()", "");
-        $data['best_products'] = $this->ProductModel->get_products(6, "RAND()", "");
-        $data['deal_products'] = $this->ProductModel->get_products(6, "RAND()", "");
+        $data['latest_products'] = $this->ProductModel->get_products(8);
+        $data['popular_products'] = $this->ProductModel->get_products(8, "RAND()", "");
+        $data['best_products'] = $this->ProductModel->get_products(8, "RAND()", "");
+        $data['deal_products'] = $this->ProductModel->get_products(8, "RAND()", "");
         $data['new_arrairval'] = $this->ProductModel->get_products(8);
 
         // Fetch all categories
