@@ -2,8 +2,8 @@
     <div class="container">
         <div class="home_banner home_banner_full_width">
             <div class="home_banner_all owl-carousel owl-theme">
-                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>" alt=""></div>
-                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>" alt=""></div>
+                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_1.jpg'); ?>" alt="" style = "margin-top:57px;"></div>
+                <div class="home_banner_Single"><img src="<?php echo base_url('assets/frontend/images/banner_2.jpg'); ?>" alt="" style = "margin-top:57px;"></div>
             </div>
         </div>
     </div>
