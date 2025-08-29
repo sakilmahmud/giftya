@@ -78,12 +78,12 @@
                     <!-- <img src="<?php echo base_url(); ?>assets/frontend/images/lineheart.png" class="img-fluid heart_clickable" alt=""> -->
                 </div>
                 <p class="tax_data">Inclusive of all taxes</p>
-                <div class="delivery_estimation mt-3">
+                <div class="delivery_estimation my-3">
                     <div class="custom_input_section w-100 d-flex gap-3">
-                        <input type="text" id="custom_text_input" class="form-control" placeholder="Enter Pincode">
-                        <button class="btn btn-sm" style="background-color: var(--main-color); color: #fff;">Submit</button>
+                        <input type="text" id="pincode_input" class="form-control" placeholder="Enter Pincode" maxlength="6">
+                        <button class="btn btn-sm" id="pincode_submit_btn" style="background-color: var(--main-color); color: #fff;">Submit</button>
                     </div>
-                    <p class="delivery_date mt-2">Estimated Delivery: 29th Aug - 30th Aug</p>
+                    <p class="delivery_date mt-2" id="estimated_delivery_text" style="display: none;">Estimated Delivery: 29th Aug - 30th Aug</p>
                 </div>
 
 
@@ -218,6 +218,27 @@
 
     <script src="<?php echo base_url(); ?>assets/frontend/js/lightslider.min.js"></script>
 
+    <style>
+        @keyframes truck-move {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .animated-truck {
+            display: inline-block;
+            animation: truck-move 1s infinite ease-in-out;
+        }
+    </style>
+
     <script>
         $(document).ready(function() {
             $('#lightSlider').lightSlider({
@@ -278,10 +299,42 @@
                 $('#photo-previews .btn-close').each(function(i) {
                     $(this).data('index', i);
                 });
+            });
 
-                // Update the file input's files property (optional, but good practice)
-                // This is tricky with FileList, often easier to manage with FormData directly
-                // For now, we'll rely on selectedFiles array for FormData construction
+            // Pincode functionality
+            $('#pincode_submit_btn').on('click', function() {
+                var pincode = $('#pincode_input').val();
+                var $thisBtn = $(this);
+                var $deliveryText = $('#estimated_delivery_text');
+
+                if (pincode.length !== 6 || !/^[0-9]+$/.test(pincode)) {
+                    alert('Please enter a valid 6-digit pincode.');
+                    return;
+                }
+
+                // Show loading state
+                $thisBtn.prop('disabled', true).text('Checking...');
+                $deliveryText.html('<i class="fas fa-spinner fa-spin"></i> Checking delivery...').show(); // Show and update
+
+                setTimeout(function() {
+                    // Calculate dates
+                    var today = new Date();
+                    var deliveryStart = new Date();
+                    deliveryStart.setDate(today.getDate() + 4);
+                    var deliveryEnd = new Date();
+                    deliveryEnd.setDate(today.getDate() + 7);
+
+                    var options = {
+                        day: 'numeric',
+                        month: 'short'
+                    };
+                    var formattedStart = deliveryStart.toLocaleDateString('en-US', options);
+                    var formattedEnd = deliveryEnd.toLocaleDateString('en-US', options);
+
+                    // Update message with truck icon
+                    $deliveryText.html('<i class="fas fa-truck-moving animated-truck"></i> Estimated Delivery: ' + formattedStart + ' - ' + formattedEnd);
+                    $thisBtn.prop('disabled', false).text('Submit');
+                }, 2000); // 2-second delay
             });
 
             // Add to Cart AJAX
@@ -292,7 +345,7 @@
                 var product_id = $('input[name="product_id"]').val();
                 var quantity = parseInt($('#number').val());
                 var custom_message = $('#custom_message').val();
-                
+
                 // Client-side validation
                 if (quantity <= 0) {
                     alert('Please enter a valid quantity.');
