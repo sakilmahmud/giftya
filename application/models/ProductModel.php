@@ -393,6 +393,13 @@ class ProductModel extends CI_Model
         return $query->row();
     }
 
+    public function get_product_by_id($product_id)
+    {
+        $this->db->where('id', $product_id);
+        $query = $this->db->get('products');
+        return $query->row_array();
+    }
+
     public function update_product_by_name($name, $data)
     {
         $this->db->where('name', $name);

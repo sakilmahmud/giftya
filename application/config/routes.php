@@ -20,6 +20,15 @@ $route['product-type/(:any)'] = 'Home/product_type/$1';
 
 /** End of Frontend Routes */
 
+/** Cart Routes */
+$route['cart/add'] = 'CartController/add_to_cart_ajax';
+$route['cart'] = 'CartController/index';
+$route['cart/update_quantity'] = 'CartController/update_cart_item_quantity_ajax';
+$route['cart/remove_item'] = 'CartController/remove_cart_item_ajax';
+$route['cart/apply_coupon'] = 'CartController/apply_coupon_ajax';
+$route['cart/get_count'] = 'CartController/get_cart_count_ajax';
+/** End of Cart Routes */
+
 /** Admin Routes */
 $route['admin'] = 'AdminController/index';
 $route['admin/demo'] = 'AdminController/demoDashboard';

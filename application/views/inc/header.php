@@ -31,52 +31,153 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style.css') ?>" />
 
     <script src="<?php echo base_url('assets/frontend/js/jquery3.7.1.min.js'); ?>"></script>
+
     <style>
-        /* .rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-start;
-            position: absolute;
-            left: 0;
+        .nav-item {
+            list-style: none;
         }
 
-        .rating input {
+        .nav-item .sub-menu {
             display: none;
+            /* Hide submenu initially */
+            padding-left: 15px;
         }
 
-        .rating label {
-            font-size: 2rem;
-            color: #ddd;
+
+
+        .search_suggestion_box {
+            position: absolute;
+            background: #fff;
+            z-index: 1000;
+            width: 350px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            margin-top: 5px;
+            top: 65px;
+        }
+
+        .search_suggestion_box ul li {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
             cursor: pointer;
         }
 
-        .rating input:checked~label i {
+        .search_suggestion_box ul li img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 10px;
+        }
+
+        .search_suggestion_box ul li:hover {
+            background: #f9f9f9;
+        }
+
+        @media screen and (max-width: 768px) {
+            .search_suggestion_box {
+                width: 300px !important;
+                top: 110px !important;
+            }
+        }
+
+        .rating_number {
+            margin-left: 5px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .rating_stars {
+            display: flex;
+            align-items: center;
+        }
+
+        .rating_stars i {
             color: gold;
         }
 
-        .rating label:hover i,
-        .rating label:hover~label i {
-            color: gold;
+        .share_items {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
 
-        */
-
-        .rating input:checked~label i {
-            color: gold;
-        }
-
-        .rating label:hover i,
-        .rating label:hover~label i {
-            color: gold;
+        .delivery_date {
+            font-size: 14px;
+            color: red;
         }
     </style>
+    <script>
+        $(document).ready(function() {
+            // Function to update cart count in header
+            function updateHeaderCartCount() {
+                $.ajax({
+                    url: '<?php echo base_url('cart/get_count'); ?>',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('#cart-item-count').text(response.cart_item_count);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching cart count: " + xhr.responseText);
+                    }
+                });
+            }
+
+            // Call on page load
+            updateHeaderCartCount();
+
+            $(".product_search_input").on("keyup", function() {
+                let query = $(this).val();
+                if (query.length > 1) {
+                    $.ajax({
+                        url: "<?php echo base_url('product/searchProducts'); ?>",
+                        method: "POST",
+                        data: {
+                            keyword: query
+                        },
+                        dataType: "json",
+                        success: function(res) {
+                            if (res.status === "success") {
+                                let list = "";
+                                $.each(res.products, function(i, product) {
+                                    let image = product.featured_image ? product.featured_image : 'default.png';
+                                    list += `<li class="show_product_modal" data-id="${product.id}">
+                                <img src="<?php echo base_url('uploads/products/'); ?>${image}" />
+                                <span>${product.name}</span>
+                            </li>`;
+                                });
+                                $(".search_results").html(list);
+                                $(".search_suggestion_box").removeClass('d-none');
+                            } else {
+                                $(".search_results").html('<li>No products found</li>');
+                                $(".search_suggestion_box").removeClass('d-none');
+                            }
+                        },
+                    });
+                } else {
+                    $(".search_suggestion_box").addClass('d-none');
+                }
+            });
+
+            // Optional: hide on click outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.header_search').length) {
+                    $('.search_suggestion_box').addClass('d-none');
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
     <div class="top-slide-bar">
-        <span class="font-medium" style="font-size: 14px;">Free Shipping & Cash on Delivery | 7602855329</span>
+        <span class="font-medium">Free Shipping & Cash on Delivery | 7602855329</span>
     </div>
-    <header class="fixed-top web_header">
+    <header class="web_header">
         <div class="container">
             <div class="header_top">
                 <a class="navbar-brand" href="<?php echo base_url(); ?>">
@@ -96,7 +197,7 @@
                             <a href="#"><img src="<?php echo base_url('assets/frontend/images/heart.png') ?>" alt="heart" />Wihlist</a>
                         </li>
                         <li>
-                            <a href="#"><img src="<?php echo base_url('assets/frontend/images/cart.png') ?>" alt="cart" />Cart</a>
+                            <a href="<?php echo base_url('cart'); ?>" id="cart-link" data-cart-count="0"><img src="<?php echo base_url('assets/frontend/images/cart.png') ?>" alt="cart" />Cart <span id="cart-item-count" class="badge rounded-pill ms-1" style="background-color: var(--main-color); color: #fff;">0</span></a>
                         </li>
                     </ul>
                 </div>
@@ -257,59 +358,7 @@
                 </div>
             </nav>
         </div>
-
     </header>
-    <style>
-        .nav-item {
-            list-style: none;
-        }
-
-        .nav-item .sub-menu {
-            display: none;
-            /* Hide submenu initially */
-            padding-left: 15px;
-        }
-
-
-
-        .search_suggestion_box {
-            position: absolute;
-            background: #fff;
-            z-index: 1000;
-            width: 350px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            margin-top: 5px;
-            top: 65px;
-        }
-
-        .search_suggestion_box ul li {
-            padding: 5px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .search_suggestion_box ul li img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            margin-right: 10px;
-        }
-
-        .search_suggestion_box ul li:hover {
-            background: #f9f9f9;
-        }
-
-        @media screen and (max-width: 768px) {
-            .search_suggestion_box {
-                width: 300px !important;
-                top: 110px !important;
-            }
-        }
-    </style>
-
     <script>
         $(document).ready(function() {
             $(".product_search_input").on("keyup", function() {
