@@ -1,0 +1,1 @@
+ALTER TABLE `used_coupons` CHANGE `user_id` `customer_id` INT(11) NULL DEFAULT NULL;

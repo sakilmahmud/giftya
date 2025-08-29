@@ -9,6 +9,9 @@ $route['translate_uri_dashes'] = FALSE;
 $route['register'] = 'authController/register';
 $route['login'] = 'authController/login';
 $route['logout'] = 'authController/logout';
+$route['auth/check_customer_login_ajax'] = 'AuthController/check_customer_login_ajax';
+$route['auth/customer_register'] = 'AuthController/customer_register';
+$route['auth/customer_login'] = 'AuthController/customer_login';
 
 /** Frontend Routes */
 $route['products'] = 'Home/products'; // Main products page
@@ -28,6 +31,14 @@ $route['cart/remove_item'] = 'CartController/remove_cart_item_ajax';
 $route['cart/apply_coupon'] = 'CartController/apply_coupon_ajax';
 $route['cart/get_count'] = 'CartController/get_cart_count_ajax';
 /** End of Cart Routes */
+
+/** Checkout Routes */
+$route['checkout'] = 'CheckoutController/index';
+$route['checkout/process'] = 'CheckoutController/process_order';
+$route['checkout/payment_instructions'] = 'CheckoutController/payment_instructions';
+$route['checkout/confirm_payment'] = 'CheckoutController/confirm_payment';
+$route['order_success'] = 'Home/order_success'; // Assuming a simple success page in Home controller
+/** End of Checkout Routes */
 
 /** Admin Routes */
 $route['admin'] = 'AdminController/index';

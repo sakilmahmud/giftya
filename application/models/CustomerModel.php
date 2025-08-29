@@ -17,6 +17,9 @@ class CustomerModel extends CI_Model
     // Method to insert a new customer
     public function insert_customer($data)
     {
+        if (isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
         $this->db->insert('customers', $data);
         return $this->db->insert_id(); // Return the ID of the newly created customer
     }
@@ -24,8 +27,23 @@ class CustomerModel extends CI_Model
     // Method to update an existing customer
     public function update_customer($id, $data)
     {
+        if (isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
         $this->db->where('id', $id);
         return $this->db->update('customers', $data);
+    }
+
+    // Method to authenticate customer
+    public function authenticate_customer($phone, $password)
+    {
+        $customer = $this->get_by_phone($phone);
+
+        if ($customer && password_verify($password, $customer['password'])) {
+            return $customer;
+        } else {
+            return false;
+        }
     }
 
     // Method to retrieve customer by phone number

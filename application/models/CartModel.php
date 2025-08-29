@@ -14,8 +14,8 @@ class CartModel extends CI_Model {
         return $this->db->get('carts')->row_array();
     }
 
-    public function get_cart_by_user_id($user_id) {
-        $this->db->where('user_id', $user_id);
+    public function get_cart_by_customer_id($customer_id) {
+        $this->db->where('customer_id', $customer_id);
         $this->db->where('status', 'active');
         return $this->db->get('carts')->row_array();
     }
@@ -79,9 +79,9 @@ class CartModel extends CI_Model {
         return $this->db->count_all_results('cart_items');
     }
 
-    public function has_user_used_coupon($user_id, $session_id, $coupon_code) {
-        if ($user_id) {
-            $this->db->where('user_id', $user_id);
+    public function has_customer_used_coupon($customer_id, $session_id, $coupon_code) {
+        if ($customer_id) {
+            $this->db->where('customer_id', $customer_id);
         } else {
             $this->db->where('session_id', $session_id);
         }
@@ -90,13 +90,13 @@ class CartModel extends CI_Model {
         return $query->num_rows() > 0;
     }
 
-    public function mark_coupon_as_used($user_id, $session_id, $coupon_code) {
+    public function mark_coupon_as_used_by_customer($customer_id, $session_id, $coupon_code) {
         $data = array(
             'coupon_code' => $coupon_code,
             'used_at' => date('Y-m-d H:i:s')
         );
-        if ($user_id) {
-            $data['user_id'] = $user_id;
+        if ($customer_id) {
+            $data['customer_id'] = $customer_id;
         } else {
             $data['session_id'] = $session_id;
         }

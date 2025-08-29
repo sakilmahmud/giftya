@@ -287,4 +287,12 @@ class Home extends CI_Controller
         $this->load->view('privacy', $data);
         $this->load->view('inc/footer', $data);
     }
+
+    public function order_success()
+    {
+        $data['title'] = "Order Success :: Giftya";
+        $this->load->view('inc/header', $data);
+        $this->load->view('order_success', $data);
+        $this->load->view('inc/footer', $data);
+    }
 }

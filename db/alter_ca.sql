@@ -1,0 +1,1 @@
+ALTER TABLE `customer_addresses` CHANGE `user_id` `customer_id` INT(11) NOT NULL;

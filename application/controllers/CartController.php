@@ -18,6 +18,15 @@ class CartController extends CI_Controller
         $response = array('status' => 'error', 'message' => 'Invalid request.');
 
         if ($this->input->is_ajax_request()) {
+
+            // Check if customer is logged in
+            if (!$this->session->userdata('customer_id')) {
+                $response['status'] = 'login_required';
+                $response['message'] = 'Please log in to add items to your cart.';
+                echo json_encode($response);
+                return;
+            }
+
             $product_id = $this->input->post('product_id');
             $quantity = $this->input->post('quantity');
             $custom_message = $this->input->post('custom_message');
@@ -79,12 +88,12 @@ class CartController extends CI_Controller
 
             $price = ($product['sale_price'] > 0) ? $product['sale_price'] : $product['regular_price'];
 
-            $user_id = $this->session->userdata('user_id'); // Get logged-in user ID
+            $customer_id = $this->session->userdata('customer_id'); // Get logged-in user ID
             $session_id = session_id(); // Get current session ID for guest users
 
             $cart = null;
-            if ($user_id) {
-                $cart = $this->CartModel->get_cart_by_user_id($user_id);
+            if ($customer_id) {
+                $cart = $this->CartModel->get_cart_by_customer_id($customer_id);
             } else {
                 $cart = $this->CartModel->get_cart_by_session_id($session_id);
             }
@@ -96,8 +105,8 @@ class CartController extends CI_Controller
                     'updated_at' => date('Y-m-d H:i:s'),
                     'status' => 'active'
                 );
-                if ($user_id) {
-                    $cart_data['user_id'] = $user_id;
+                if ($customer_id) {
+                    $cart_data['customer_id'] = $customer_id;
                 } else {
                     $cart_data['session_id'] = $session_id;
                 }
@@ -151,12 +160,12 @@ class CartController extends CI_Controller
     {
         $data['title'] = "Cart :: Giftya";
         // This will be the cart page view
-        $user_id = $this->session->userdata('user_id');
+        $customer_id = $this->session->userdata('customer_id');
         $session_id = session_id();
 
         $cart = null;
-        if ($user_id) {
-            $cart = $this->CartModel->get_cart_by_user_id($user_id);
+        if ($customer_id) {
+            $cart = $this->CartModel->get_cart_by_customer_id($customer_id);
         } else {
             $cart = $this->CartModel->get_cart_by_session_id($session_id);
         }
@@ -256,12 +265,12 @@ class CartController extends CI_Controller
             $valid_coupon = 'LOVEGIFTYA';
             $discount_percentage = 10; // 10% discount
 
-            $user_id = $this->session->userdata('user_id');
+            $customer_id = $this->session->userdata('customer_id');
             $session_id = session_id();
 
             $cart = null;
-            if ($user_id) {
-                $cart = $this->CartModel->get_cart_by_user_id($user_id);
+            if ($customer_id) {
+                $cart = $this->CartModel->get_cart_by_customer_id($customer_id);
             } else {
                 $cart = $this->CartModel->get_cart_by_session_id($session_id);
             }
@@ -286,7 +295,7 @@ class CartController extends CI_Controller
             }
 
             // Check if user/session has already used this coupon
-            if ($this->CartModel->has_user_used_coupon($user_id, $session_id, $valid_coupon)) {
+            if ($this->CartModel->has_customer_used_coupon($customer_id, $session_id, $valid_coupon)) {
                 $response['message'] = 'This coupon has already been used.';
                 echo json_encode($response);
                 return;
@@ -306,7 +315,7 @@ class CartController extends CI_Controller
             $this->CartModel->update_cart($cart['id'], $update_data);
 
             // Mark coupon as used
-            $this->CartModel->mark_coupon_as_used($user_id, $session_id, $valid_coupon);
+            $this->CartModel->mark_coupon_as_used_by_customer($customer_id, $session_id, $valid_coupon);
 
             $response['status'] = 'success';
             $response['message'] = 'Coupon applied successfully!';
@@ -322,12 +331,12 @@ class CartController extends CI_Controller
         $response = array('status' => 'error', 'message' => 'Invalid request.', 'cart_item_count' => 0);
 
         if ($this->input->is_ajax_request()) {
-            $user_id = $this->session->userdata('user_id');
+            $customer_id = $this->session->userdata('customer_id');
             $session_id = session_id();
 
             $cart = null;
-            if ($user_id) {
-                $cart = $this->CartModel->get_cart_by_user_id($user_id);
+            if ($customer_id) {
+                $cart = $this->CartModel->get_cart_by_customer_id($customer_id);
             } else {
                 $cart = $this->CartModel->get_cart_by_session_id($session_id);
             }

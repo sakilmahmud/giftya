@@ -16,19 +16,42 @@ class InvoiceModel extends CI_Model
     }
 
     // Method to insert products associated with an invoice
-    public function insert_invoice_products($invoice_id, $products)
+    public function insert_invoice_details($invoice_id, $products)
     {
         foreach ($products as $product) {
-            $product['invoice_id'] = $invoice_id;
-            $this->db->insert('invoice_products', $product);
+            $insert_data = [
+                'invoice_id' => $invoice_id,
+                'product_id' => $product['product_id'],
+                'quantity' => $product['quantity'],
+                'price' => $product['price'],
+                'custom_message' => $product['custom_message'] ?? NULL,
+                'photo_urls' => $product['photo_urls'] ?? NULL,
+                // Add other necessary fields for invoice_details table if they exist in $product
+                // e.g., 'discount_type' => $product['discount_type'] ?? NULL,
+                // 'discount' => $product['discount'] ?? NULL,
+                // 'taxable_value' => $product['taxable_value'] ?? NULL,
+                // 'cgst' => $product['cgst'] ?? NULL,
+                // 'sgst' => $product['sgst'] ?? NULL,
+                // 'gst_amount' => $product['gst_amount'] ?? NULL,
+                // 'cess_amount' => $product['cess_amount'] ?? NULL,
+                // 'final_price' => $product['final_price'] ?? NULL,
+                // 'invoice_date' => date('Y-m-d H:i:s'), // Or from invoice_data
+                // 'hsn_code' => $product['hsn_code'] ?? NULL,
+                // 'hsn_code_id' => $product['hsn_code_id'] ?? NULL,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+                'status' => 1, // Assuming active
+            ];
+            $this->db->insert('invoice_details', $insert_data);
         }
     }
 
     public function get_all_invoices()
     {
-        $this->db->select('invoices.*, users.full_name as created_by_name');
+        $this->db->select('invoices.*, users.full_name as created_by_name, ca.full_name as customer_full_name, ca.email as customer_email, ca.phone as customer_phone, ca.address_line_1, ca.address_line_2, ca.city, ca.state, ca.pincode');
         $this->db->from('invoices');
-        $this->db->join('users', 'invoices.created_by = users.id', 'left'); // Use 'left' join if you want to include invoices without a corresponding user
+        $this->db->join('users', 'invoices.created_by = users.id', 'left');
+        $this->db->join('customer_addresses ca', 'invoices.customer_address_id = ca.id', 'left');
         $this->db->order_by('invoices.created_at', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
@@ -43,10 +66,12 @@ class InvoiceModel extends CI_Model
         invoices.total_amount,
         IFNULL(transactions_summary.paid_amount, 0) as paid_amount,
         (invoices.total_amount - IFNULL(transactions_summary.paid_amount, 0)) as due_amount,
-        GROUP_CONCAT(products.name SEPARATOR ", ") as product_names
+        GROUP_CONCAT(products.name SEPARATOR ", ") as product_names,
+        ca.full_name as customer_full_name, ca.email as customer_email, ca.phone as customer_phone, ca.address_line_1, ca.address_line_2, ca.city, ca.state, ca.pincode
         ');
         $this->db->from('invoices');
         $this->db->join('users', 'invoices.created_by = users.id', 'left');
+        $this->db->join('customer_addresses ca', 'invoices.customer_address_id = ca.id', 'left');
 
         // Subquery for transactions total amount
         $this->db->join(
@@ -82,7 +107,9 @@ class InvoiceModel extends CI_Model
         if (!empty($search_value)) {
             $this->db->group_start();
             $this->db->like('invoices.invoice_no', $search_value);
-            $this->db->or_like('invoices.customer_name', $search_value);
+            $this->db->or_like('ca.full_name', $search_value); // Search by customer name from address
+            $this->db->or_like('ca.email', $search_value); // Search by customer email from address
+            $this->db->or_like('ca.phone', $search_value); // Search by customer phone from address
             $this->db->or_like('users.full_name', $search_value);
             $this->db->or_like('products.name', $search_value); // Search by product name
             $this->db->group_end();
@@ -106,6 +133,7 @@ class InvoiceModel extends CI_Model
         $this->db->select('COUNT(DISTINCT invoices.id) as count');
         $this->db->from('invoices');
         $this->db->join('users', 'invoices.created_by = users.id', 'left');
+        $this->db->join('customer_addresses ca', 'invoices.customer_address_id = ca.id', 'left');
 
         // Use the same transactions subquery
         $this->db->join(
@@ -133,7 +161,9 @@ class InvoiceModel extends CI_Model
         if (!empty($search_value)) {
             $this->db->group_start();
             $this->db->like('invoices.invoice_no', $search_value);
-            $this->db->or_like('invoices.customer_name', $search_value);
+            $this->db->or_like('ca.full_name', $search_value); // Search by customer name from address
+            $this->db->or_like('ca.email', $search_value); // Search by customer email from address
+            $this->db->or_like('ca.phone', $search_value); // Search by customer phone from address
             $this->db->or_like('users.full_name', $search_value);
             $this->db->or_like('products.name', $search_value); // Search by product name
             $this->db->group_end();
@@ -153,9 +183,10 @@ class InvoiceModel extends CI_Model
     // Method to get a specific invoice by ID
     public function get_invoice_by_id($invoice_id)
     {
-        $this->db->select('*');
+        $this->db->select('invoices.*, ca.full_name as customer_full_name, ca.email as customer_email, ca.phone as customer_phone, ca.address_line_1, ca.address_line_2, ca.city, ca.state, ca.pincode');
         $this->db->from('invoices');
-        $this->db->where('id', $invoice_id);
+        $this->db->join('customer_addresses ca', 'invoices.customer_address_id = ca.id', 'left');
+        $this->db->where('invoices.id', $invoice_id);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -173,12 +204,12 @@ class InvoiceModel extends CI_Model
 
 
     // Method to get products associated with a specific invoice
-    public function get_invoice_products($invoice_id)
+    public function get_invoice_details_products($invoice_id)
     {
-        $this->db->select('invoice_products.*, products.name as product_name');
-        $this->db->from('invoice_products');
-        $this->db->join('products', 'invoice_products.product_id = products.id');
-        $this->db->where('invoice_products.invoice_id', $invoice_id);
+        $this->db->select('invoice_details.*, products.name as product_name');
+        $this->db->from('invoice_details');
+        $this->db->join('products', 'invoice_details.product_id = products.id');
+        $this->db->where('invoice_details.invoice_id', $invoice_id);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -188,7 +219,7 @@ class InvoiceModel extends CI_Model
     {
         // Delete products associated with the invoice
         $this->db->where('invoice_id', $invoice_id);
-        $this->db->delete('invoice_products');
+        $this->db->delete('invoice_details');
 
         // Delete the invoice itself
         $this->db->where('id', $invoice_id);
@@ -256,5 +287,11 @@ class InvoiceModel extends CI_Model
         $this->db->where('t.trans_type', 1); // Payment only
         $this->db->where('t.status', 1);
         return $this->db->get()->row_array();
+    }
+
+    public function update_invoice_status($invoice_id, $data) {
+        $this->db->where('id', $invoice_id);
+        $this->db->update('invoices', $data);
+        return $this->db->affected_rows();
     }
 }

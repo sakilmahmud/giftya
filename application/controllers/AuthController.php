@@ -9,6 +9,7 @@ class AuthController extends CI_Controller
         // Load form validation library
         $this->load->library('form_validation');
         $this->load->model('UserModel');
+        $this->load->model('CustomerModel'); // Load CustomerModel
     }
 
     public function index()
@@ -152,5 +153,115 @@ class AuthController extends CI_Controller
         $this->session->unset_userdata('role');
         $this->session->unset_userdata('user_id');
         redirect('login'); // Change 'login' to the desired destination after logout
+    }
+
+    // New methods for customer authentication
+
+    public function customer_login()
+    {
+        $response = ['success' => false, 'message' => ''];
+
+        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|numeric|exact_length[10]');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $response['message'] = validation_errors();
+        } else {
+            $mobile = $this->input->post('mobile');
+            $password = $this->input->post('password');
+
+            $customer = $this->CustomerModel->authenticate_customer($mobile, $password);
+
+            if ($customer) {
+                $this->session->set_userdata([
+                    'customer_id'   => $customer['id'],
+                    'customer_name' => $customer['customer_name'],
+                    'customer_phone' => $customer['phone']
+                ]);
+                $response['success'] = true;
+                $response['message'] = 'Login successful!';
+            } else {
+                $response['message'] = 'Invalid mobile number or password.';
+            }
+        }
+        echo json_encode($response);
+    }
+
+    public function customer_register()
+    {
+        $response = ['success' => false, 'message' => ''];
+
+        $this->form_validation->set_rules('full_name', 'Full Name', 'required');
+        $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|numeric|exact_length[10]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $response['message'] = validation_errors();
+        } else {
+            $fullName = $this->input->post('full_name');
+            $mobile = $this->input->post('mobile');
+            $password = $this->input->post('password');
+
+            $existing_customer = $this->CustomerModel->get_by_phone($mobile);
+
+            if ($existing_customer) {
+                // Customer exists
+                if (empty($existing_customer['password'])) {
+                    // Password is not set, so update it
+                    $this->CustomerModel->update_customer($existing_customer['id'], ['password' => $password]);
+                    $this->session->set_userdata([
+                        'customer_id'   => $existing_customer['id'],
+                        'customer_name' => $existing_customer['customer_name'],
+                        'customer_phone' => $existing_customer['phone']
+                    ]);
+                    $response['success'] = true;
+                    $response['message'] = 'Password updated successfully! You are now logged in.';
+                } else {
+                    // Password already set
+                    $response['message'] = 'A customer with this mobile number already exists.';
+                }
+            } else {
+                // Customer does not exist, create new customer
+                $customerData = array(
+                    'customer_name' => $fullName,
+                    'phone' => $mobile,
+                    'password' => $password, // Password will be hashed in CustomerModel
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                );
+
+                $customer_id = $this->CustomerModel->insert_customer($customerData);
+
+                if ($customer_id) {
+                    $this->session->set_userdata([
+                        'customer_id'   => $customer_id,
+                        'customer_name' => $fullName,
+                        'customer_phone' => $mobile
+                    ]);
+                    $response['success'] = true;
+                    $response['message'] = 'Registration successful! You are now logged in.';
+                } else {
+                    $response['message'] = 'Failed to register. Please try again.';
+                }
+            }
+        }
+        echo json_encode($response);
+    }
+
+    public function customer_logout()
+    {
+        $this->session->unset_userdata('customer_id');
+        $this->session->unset_userdata('customer_name');
+        $this->session->unset_userdata('customer_phone');
+        redirect('checkout'); // Redirect to checkout page after customer logout
+    }
+
+    public function check_customer_login_ajax()
+    {
+        $response = ['logged_in' => false];
+        if ($this->session->userdata('customer_id')) {
+            $response['logged_in'] = true;
+        }
+        echo json_encode($response);
     }
 }

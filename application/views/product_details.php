@@ -337,11 +337,34 @@
                 }, 2000); // 2-second delay
             });
 
+
             // Add to Cart AJAX
             $('#add_to_cart_btn').on('click', function(e) {
                 e.preventDefault();
-                var $this = $(this);
+                
+                // First, check if the user is logged in
+                $.ajax({
+                    url: '<?php echo base_url("auth/check_customer_login_ajax"); ?>',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.logged_in) {
+                            // If logged in, proceed to add to cart
+                            addToCart();
+                        } else {
+                            // If not logged in, show the login modal
+                            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                            loginModal.show();
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while checking login status.');
+                    }
+                });
+            });
 
+            function addToCart() {
+                var $this = $('#add_to_cart_btn');
                 var product_id = $('input[name="product_id"]').val();
                 var quantity = parseInt($('#number').val());
                 var custom_message = $('#custom_message').val();
@@ -376,7 +399,7 @@
                 $('.loader').show();
 
                 $.ajax({
-                    url: '<?php echo base_url('cart/add'); ?>',
+                    url: '<?php echo base_url("cart/add"); ?>',
                     type: 'POST',
                     dataType: 'json',
                     data: formData,
@@ -386,7 +409,7 @@
                         if (response.status === 'success') {
                             alert(response.message);
                             $('#cart-item-count').text(response.cart_item_count); // Update header cart count
-                            window.location.href = '<?php echo base_url('cart'); ?>'; // Redirect to cart page
+                            window.location.href = '<?php echo base_url("cart"); ?>'; // Redirect to cart page
                         } else {
                             alert('Error: ' + response.message);
                         }
@@ -404,7 +427,55 @@
                         $('.loader').hide();
                     }
                 });
+            }
+
+            // Handle Login Form Submission
+            $('#loginFormModal').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '<?php echo base_url("auth/customer_login"); ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            var loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                            loginModal.hide();
+                            addToCart(); // Add to cart after successful login
+                        } else {
+                            $('#loginMessageModal').html('<div class="alert alert-danger">' + response.message + '</div>');
+                        }
+                    },
+                    error: function() {
+                        $('#loginMessageModal').html('<div class="alert alert-danger">An error occurred.</div>');
+                    }
+                });
             });
+
+            // Handle Register Form Submission
+            $('#registerFormModal').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '<?php echo base_url("auth/customer_register"); ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            var registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+                            registerModal.hide();
+                            addToCart(); // Add to cart after successful registration
+                        } else {
+                            $('#registerMessageModal').html('<div class="alert alert-danger">' + response.message + '</div>');
+                        }
+                    },
+                    error: function() {
+                        $('#registerMessageModal').html('<div class="alert alert-danger">An error occurred.</div>');
+                    }
+                });
+            });
+
+            
         });
 
         // Quantity increase/decrease functions (already present, just ensuring they are here)

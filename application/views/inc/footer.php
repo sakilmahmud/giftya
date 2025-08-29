@@ -88,6 +88,9 @@
     </div>
 </footer>
 
+<?php include_once('login_modal.php'); ?>
+<?php include_once('register_modal.php'); ?>
+
 <a href="#" class="to_top"><i class="fa-solid fa-chevron-up"></i></a>
 
 <script src="<?php echo base_url('assets/frontend/js/bootstrap.bundle.min.js'); ?>"></script>
